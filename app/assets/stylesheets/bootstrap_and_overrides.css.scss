@@ -1,0 +1,38 @@
+/* Navbar */
+$navbarInverseBackground: #323538;
+$navbarInverseBackgroundHighlight: #505255;
+// $navbarInverseBorder: #242729;
+$navbarInverseText: #D5D5D5;
+$navbarInverseLinkColor: #D5D5D5;
+$navbarInverseLinkColorHover: #fff;
+$navbarInverseLinkColorActive: #fff;
+$navbarInverseLinkBackgroundActive: darken($navbarInverseBackground, 10%); 
+
+@import 'twitter/bootstrap-no-sprites';
+@import "compass";
+// Font Awesome
+@import "font-awesome";
+
+
+.hidden {
+  display: none;
+}
+
+.help-block {
+  font-style: italic;
+}
+
+body {
+  margin-top: 60px;
+}
+
+/* Rails scaffold style compatibility */
+#error_explanation {
+  @extend .alert;
+  @extend .alert-error;
+  @extend .alert-block; /* optional */
+}
+
+.field_with_errors {
+  @extend .control-group.error
+}

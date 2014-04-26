@@ -1,0 +1,9 @@
+<div class="fields">
+  <p>
+    <%= f.label :content, "Question" %>
+    <%= link_to_remove_fields "Remove Question", f %><br />
+    <%= f.text_area :content, :label => "Question Content", :rows => 3 %><br />
+    <%= f.text_field :max_duration, :label => "Maximum Video Length (in seconds)" %><br />
+    <%= f.text_field :max_takes, :label => "Maximum Takes" %><br />
+  </p>
+</div>

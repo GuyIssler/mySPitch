@@ -1,0 +1,13 @@
+<%= bootstrap_form_for(@job, help: :block) do |f| %>
+  <%= f.fields_for :questions do |builder| %>
+    <%= render 'question_fields', :f => builder %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Question", f, :questions %> </p>
+
+  <%= f.actions do %>
+    <%= f.primary t('buttons.submit'), disable_with: t('buttons.saving') %>
+  <% end %>
+<% end %>
+
+
+

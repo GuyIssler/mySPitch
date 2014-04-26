@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(@job, help: :block) do |f| %>
+  <%= f.alert_message t('alerts.model_generic') %>
+  <%= f.text_area :description, help: t('activerecord.help.models.job.description'), rows: 5, class: "input-xxlarge"  %>
+  <%= f.text_area :video_instructions, help: t('activerecord.help.models.job.video_instructions'), rows: 5, class: "input-xxlarge"  %>
+  <%= f.actions do %>
+    <%= f.primary t('buttons.submit'), disable_with: t('buttons.saving') %>
+  <% end %>
+<% end %>
+
+
+

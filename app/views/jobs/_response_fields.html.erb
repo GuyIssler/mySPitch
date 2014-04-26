@@ -1,0 +1,9 @@
+<div class="fields">
+<p>
+  <%= f.label :content, "Response" %>
+  <%= f.text_field :content , :label => "Response Content" %>
+  <%= f.check_box :is_true ,:style => "display:inline;"%>
+  <%= f.label :is_true, "Correct Response" , :style => "display:inline;" %></BR> </BR>
+  <%= link_to_remove_fields "Remove Response", f %>
+</p>
+</div>

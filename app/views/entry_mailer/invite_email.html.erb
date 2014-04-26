@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= t("hello") %> <%= @entry.name %></h1>
+    <p>
+      <%= t("entry_mailer.invite_email.general_title") %> <%= @job.title %><br/>
+    </p>
+    <p>
+        <%= @job.email_content.html_safe %><br/>
+    </p>
+    <p>
+       <%= t("entry_mailer.invite_email.apply_invite") %>  <%= @url %>.
+    </p>
+    <p><%= t("entry_mailer.invite_email.good_luck") %> </p>
+  </body>
+</html>

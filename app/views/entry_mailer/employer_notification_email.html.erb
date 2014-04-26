@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= t("hello") %> <%= @employer.fullname %></h1>
+    <p>
+      <%= "#{@entry.name} " + t("entry_mailer.employer_notification_email.applied") + " #{@job.title} (#{@job.id})" %><br/>
+    </p>
+    <p>
+      <%= t("entry_mailer.employer_notification_email.view_video") %> <%= @url %>.
+    </p>
+    <p>VCL</p>
+  </body>
+</html>

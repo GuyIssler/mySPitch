@@ -1,0 +1,15 @@
+<p class="lead">To get started, fill in your employer information below.</p>
+
+<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' }, help: :block) do |f| %>
+  <%= f.alert_message "Please fix the errors below." %>
+  <%= f.text_field :first_name, label: 'First name', class: "input-xlarge" %>
+  <%= f.text_field :last_name, label: 'Last name', class: "input-xlarge" %>
+  <%= f.email_field :email, label: 'Email', class: "input-xlarge" %>
+  <%= f.password_field :password, label: 'Password', class: "input-xlarge" %>
+  <%= f.password_field :password_confirmation, label: 'Password confirmation', class: "input-xlarge" %>
+  <%= f.actions do %>
+    <%= f.primary 'Sign up', disable_with: 'Saving...' %>
+  <% end %>
+<% end %>
+
+<%= render "devise/shared/links" %>

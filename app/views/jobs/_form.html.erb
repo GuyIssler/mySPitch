@@ -1,0 +1,12 @@
+<%= bootstrap_form_for(@job, help: :block) do |f| %>
+  <%= f.alert_message t('alerts.model_generic') %>
+  <%= f.text_field :title, help: t('activerecord.help.models.job.title'), class: "input-xxlarge" %>
+  <%= f.text_area :email_content, help: t('activerecord.help.models.job.email_content'), rows: 5, class: "input-xxlarge wysihtml5"  %>
+
+  <%= f.actions do %>
+    <%= f.primary t('buttons.submit'), disable_with: t('buttons.saving') %>
+  <% end %>
+<% end %>
+
+
+

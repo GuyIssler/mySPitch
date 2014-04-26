@@ -1,0 +1,29 @@
+<h1><%= @entry.name%></h1>
+<video width="320" height="240" controls>
+  <source src="<%=@entry.video.url%>" type="video/webm">
+</video>
+<br/><br/>
+<% @entry.responses.each do |r| %>
+    <%= r.question.content %> <br/><br/>
+    <% if r.question.responses.count > 1 %>
+        <% r.question.responses.optional_responses.each do |q_res| %>
+            <% if q_res.is_true %>
+                <span id = "response_green"> <%= q_res.content %> </span>
+            <% elsif q_res.content.eql?(r.content) && !q_res.is_true %>
+                <span id = "response_red"> <%= q_res.content %>   </span>
+            <% else %>
+                <%= q_res.content %>
+            <% end %>
+        <% end %>
+    <% else %>
+        <%= r.content %>
+    <% end %>
+
+    <br/><br/>
+<% end %>
+
+<br/>
+
+
+<br/>
+<%= link_to t('entries.show.back_to_all') , job_entries_path(@job), {class: "btn btn-info"} %>

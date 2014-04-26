@@ -1,0 +1,25 @@
+<p class="lead">Edit <%= @job.title %>.</p> 
+
+<ul id="myTab" class="nav nav-tabs">
+  <li><a href="#general" data-toggle="tab">General</a></li>
+  <li><a href="#instructions" data-toggle="tab">Instructions</a></li>
+  <li><a href="#preview_q" data-toggle="tab">Preview Questions</a></li>
+  <li><a href="#video_q" data-toggle="tab">Video Questions</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade" id="general">
+    <%= render partial: "form" %>
+  </div>
+  <div class="tab-pane fade" id="instructions">
+    <%= render partial: "instructions" %>
+  </div>
+  <div class="tab-pane fade" id="preview_q">
+    <%= render partial: "preview_questions" %>
+  </div> 
+  <div class="tab-pane fade" id="video_q">
+    <%= render partial: "video_questions" %>
+  </div>   
+</div>
+<div class="clearfix"></div>
+<%= link_to t('jobs.edit.back_to_jobs'), jobs_path, {} %>

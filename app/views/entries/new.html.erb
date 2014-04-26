@@ -1,0 +1,9 @@
+<p class="lead">Enter the details of the candidate.</p> 
+<%= bootstrap_form_for([@job, @entry], help: :block) do |f| %>
+  <%= f.alert_message  t('alerts.model_generic')  %>
+  <%= f.text_field :name, label: t('entries.new.name.value') , help: t('entries.new.name.help'), class: "input-xlarge" %>
+  <%= f.email_field :email, label: t('entries.new.email.value') , help:t('entries.new.email.help') , rows: 5, class: "input-xlarge"  %>
+  <%= f.actions do %>
+    <%= f.primary t('entries.new.invite'), disable_with: t('buttons.saving') %>
+  <% end %>
+<% end %>

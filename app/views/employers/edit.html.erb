@@ -1,0 +1,20 @@
+<p class="lead">Set your profile here.</p>
+
+<ul class="nav nav-tabs" id="userTab">
+  <li ><a href="#skills">Profile</a></li>
+</ul>
+ 
+<div class="tab-content">
+  
+  <%= bootstrap_form_for(@employer, html: { class: 'form-horizontal' }, help: :block) do |f| %>
+    <%= f.alert_message "Please fix the errors below." %>
+    <%= f.text_field :first_name, label: 'First name', class: "input-xlarge" %>
+    <%= f.text_field :last_name, label: 'Last name', class: "input-xlarge" %>
+    
+    <%= f.actions do %>
+      <%= f.primary 'Update', disable_with: 'Saving...' %>
+    <% end %>
+  <% end %>
+
+  
+</div>

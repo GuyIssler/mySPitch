@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(@job, help: :block) do |f| %>
+    <%= f.fields_for :video_questions do |builder| %>
+        <%= render 'video_question_fields', :f => builder %>
+    <% end %>
+    <p><%= link_to_add_fields "Add Video Question", f, :video_questions %> </p>
+
+    <%= f.actions do %>
+        <%= f.primary t('buttons.submit'), disable_with: t('buttons.saving') %>
+    <% end %>
+<% end %>
+

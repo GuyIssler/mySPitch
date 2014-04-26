@@ -1,0 +1,25 @@
+<p class="lead"><%= t('jobs.index.header') %></p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t('jobs.index.tables.job') %></th>
+      <th><%= t('jobs.index.tables.status') %></th>
+      <th><%= t('jobs.index.tables.created') %> </th>
+      <th><%= t('jobs.index.tables.entries') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= link_to job.title, edit_job_path(job), {} %></td>
+        <td></td>
+        <td><%= job.created_at.strftime("%m/%d/%Y %H:%M") %></td>
+        <td><%= link_to job.entries.count, job_entries_path(job), {} %></td>
+        <td><%= link_to (raw '<i class="icon-trash">'), job, method: :delete, data: { confirm: t('buttons.sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('jobs.index.add_new_job') , new_job_path, {class: "btn btn-info"} %>

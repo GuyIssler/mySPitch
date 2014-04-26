@@ -1,0 +1,41 @@
+<div class="">
+  <h3 id="job_title"><%= @job.title%></h3>
+  <h5><%= @entry.name%></h5>
+  <p id="job_desc"><%= @job.description%>.</p>
+  
+  <%= form_for @job , url: {action: "record"} do |f| %>
+
+    <% @job.questions.each do |q| %>
+        <%= f.label q.content %>
+        <% if q.responses.count > 1 %>
+           <% q.responses.optional_responses.each do |r| %>
+                <%= radio_button_tag "content_#{q.id}", "#{r.id}" %>
+                <%= f.label "content_#{q.id}", "#{r.content}", :class => "checkbox inline"%><br/>
+           <% end %>
+        <% elsif %>
+            <%= text_field_tag("content_#{q.id}")%> </BR>
+        <% end %>
+    <% end %>
+    <br/>
+    <input type="submit" class="btn btn-primary btn-large" id="proceed" value="Proceed">
+    <button class="btn btn-primary btn-large" id="skip"><%= t('buttons.skip') %></button>
+  <% end %>
+
+
+
+
+
+<script>
+    var proceed = document.getElementById('proceed');
+
+    proceed.onclick = function () {
+
+    }
+
+    skip.onclick = function() {
+        window.location = "http://www.camdidate.net";
+    }
+
+
+</script>
+</div>

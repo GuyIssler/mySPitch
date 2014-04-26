@@ -1,0 +1,27 @@
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/">Camdidate</a>
+      <% if current_employer %>
+        <ul class="nav">
+          <li><a href="<%= jobs_path %>">My Jobs</a></li>
+        </ul>
+        <ul class="nav pull-right">
+          
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<%=current_employer.profile_pic_url%>" width="25"/> <%= current_employer.fullname%> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="<%=edit_employer_path(current_employer)%>"><i class="icon-cog"></i> Edit Profile</a></li>
+                <li><a href="<%=destroy_employer_session_path%> "><i class="icon-off"></i> Logout</a></li>
+              </ul>
+            </li>
+          
+        </ul>
+      <% else %>
+        <ul class="nav pull-right">
+          <li><a href="<%= jobs_path %>">Already have an account?</a></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

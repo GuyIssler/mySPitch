@@ -1,0 +1,308 @@
+<div class="hero-unit">
+<h1 id="job_title"><%= @job.title%></h1>
+<p id="job_desc"><%= @job.video_instructions%>.</p>
+<p><%= @entry.name%></p>
+<p><%= t('entries.Apply.welcome') %> <%= @job.employer.company_name%>.</p>
+<p><%= t('entries.Apply.general_request') %> </p>  </BR>
+
+<p id="record_request"><%= t('entries.Apply.record_request') %></p>
+<p id="rec_to_start" class="hide"><%= t('entries.Apply.press_rec_to_start') %></p>
+
+<div id = "counter"></div>
+
+<video id="preview" controls style="width:320;height:240;"></video> <hr />
+<audio id="preview-audio" class="hide"> </audio>
+
+<p id="proceed_btn_title"><%= t('entries.Apply.proceed_btn_title')%></p>
+<em id = "note"><%= t('entries.Apply.note')%></em>
+
+<br/><br/><p id="skip_btn_title"><%= t('entries.Apply.skip_btn_title')%></p>
+
+<button class="btn btn-primary btn-large" id="proceed"><%= t('buttons.proceed') %></button>
+<button class="btn btn-primary btn-large hide" id="record"><%= t('buttons.record') %></button>
+<button class="btn btn-primary btn-large" id="skip"><%= t('buttons.skip') %></button>
+<button id="stop" disabled class="btn btn-primary btn-large hide"><%= t('buttons.stop') %></button>
+<button class="btn btn-primary btn-large hide" id="submitRec"><%= t('buttons.submit_video') %></button>
+
+
+<div class="hide" id="loader">
+  <p><em id="submit_title"><%= t('entries.Apply.submitting')%></em></p>
+  <p>
+    <progress id='progressbar' max='100'></progress>
+  </p>
+</div>
+<script>
+
+    function PostBlob(blob, fileType, fileName) {
+        // FormData
+        var formData = new FormData();
+        formData.append(fileType + '-filename', fileName);
+        formData.append(fileType + '-blob', blob);
+        var progress = document.getElementById('progressbar'); // = document.createElement('progress');
+        // POST the Blob
+        xhr('/save/<%= @entry.entry_hash%>', formData, progress, function(fileURL) {
+            document.body.appendChild(document.createElement('hr'));
+            var mediaElement = document.createElement(fileType);
+            mediaElement.src = fileURL;
+            mediaElement.controls = true;
+            document.body.appendChild(mediaElement);
+            mediaElement.play();
+        });
+    }
+
+    var proceed = document.getElementById('proceed');
+    var record = document.getElementById('record');
+    var stop = document.getElementById('stop');
+    var submitRec = document.getElementById('submitRec');
+    var audio = document.querySelector('audio');
+
+    var recordVideo = document.getElementById('record-video');
+    var preview = document.getElementById('preview');
+    var previewAudio = document.getElementById('preview-audio');
+
+    preview.addEventListener("play", play_clicked, false);
+    preview.addEventListener("pause", pause_clicked, false);
+    preview.addEventListener("seeking", seeking_in_video, false);
+
+    var originalStream = null;
+    preview.src ='';
+
+    var recordAudio, recordVideo;
+    var is_camera_open = false;
+
+    function openCamera()
+    {
+        $("#preview").css("visibility", "visible");
+        if (is_camera_open)
+        {
+
+            if (originalStream != null) {
+                preview.src = (window.webkitURL || window.URL).createObjectURL(originalStream);
+
+            }
+            preview.load();
+            preview.play();
+
+
+            return;
+
+        }
+        var video_constraints = {
+            mandatory: { },
+            optional: []
+        };
+        navigator.webkitGetUserMedia({
+            audio: true,
+            video: video_constraints
+        }, function(stream) {
+            //preview.autoplay = true;
+            originalStream = stream;
+            preview.src = (window.webkitURL || window.URL).createObjectURL(stream);
+            preview.load();
+            preview.play();
+
+            preview.volume = 0;
+
+            recordAudio = RecordRTC(stream);
+            recordVideo = RecordRTC(stream, {
+                type: 'video',
+                video: {
+                    width: 320,
+                    height: 240
+                },
+                canvas: {
+                    width: 320,
+                    height: 240
+                }
+            });
+        });
+        is_camera_open = true;
+    }
+
+    function cameraHide() {
+        $("#preview").css("visibility", "hidden");
+    }
+
+    proceed.onclick = function () {
+        $("#record").show();
+        $("#rec_to_start").show();
+
+        $("#proceed").hide();
+        $("#skip").hide();
+        $("#record_request").hide();
+        $("#proceed_btn_title").hide();
+        $("#note").hide();
+        $("#skip_btn_title").hide();
+        $("#submitRec").hide();
+
+        openCamera();
+    }
+
+    skip.onclick = function() {
+        window.location = "http://www.camdidate.net";
+    }
+
+    record.onclick = function() {
+
+        try {
+
+            openCamera();
+            recordVideo.startRecording();
+            recordAudio.startRecording();
+        }
+        catch(err)
+        {
+            // alert(I18n.t('entries.Apply.allow_alert'));
+            // return;
+        }
+        // hide the record button
+        $("#record").hide();
+        record.disabled = true;
+
+        $("#skip").hide();
+        $("#submitRec").hide();
+
+        $("#stop").show();
+        stop.disabled = false;
+
+        $("#rec_to_start").hide();
+
+        $("#counter").show();
+        countdown(1, 5);
+    };
+
+    stop.onclick = function() {
+        $("#stop").hide();
+        $("#note").hide();
+        $("#counter").hide();
+
+        record.disabled = false;
+
+        $("#proceed").show();
+        proceed.disabled = false;
+        $("#proceed").html('Overwrite');
+
+        $("#submitRec").show();
+        submitRec.disabled = false;
+
+        //cameraHide();
+        recordAudio.stopRecording();
+        recordVideo.stopRecording();
+        clearTimeout(timer);
+
+
+        url = window.URL.createObjectURL(recordVideo.getBlob());
+        urlAudio = window.URL.createObjectURL(recordAudio.getBlob());
+
+
+        preview.src = url;
+
+        previewAudio.src = urlAudio;
+        previewAudio.pause();
+        preview.load();
+
+
+    };
+
+    function play_clicked() {
+        // do something
+
+        if (previewAudio.currentTime == 0)
+        {
+            previewAudio.load();
+        }
+        previewAudio.play();
+    }
+
+    function pause_clicked() {
+        // do something
+        var time = previewAudio.currentTime;
+
+        previewAudio.pause();
+        previewAudio.currentTime = time;
+    }
+
+    function seeking_in_video() {
+        previewAudio.currentTime = preview.currentTime;
+    }
+
+    submitRec.onclick = function() {
+        submitRec.disabled = true;
+        $("#submitRec").hide();
+        $("#general_request").hide();
+        $("#rec_to_start").hide();
+        $("#record").hide();
+        $("#proceed").hide();
+
+        var fileName = Math.round(Math.random() * 99999999) + 99999999;
+        //show a loader
+        $("#loader").show();
+
+        console.log(recordAudio.toUrl);
+        PostBlob(recordAudio.getBlob(), 'audio', fileName + '.wav');
+        PostBlob(recordVideo.getBlob(), 'video', fileName + '.webm');
+
+        preview.src = '';
+    };
+
+    function xhr(url, data, progress, callback) {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200 && request.responseText == "finished") {
+                window.location = "/confirm/<%= @entry.entry_hash%>";
+                //callback(location.href + request.responseText);
+            }
+        };
+
+        request.onprogress = function(e) {
+            if (e.total > 0)
+            {
+                var pValue = (e.loaded / e.total) * 100;
+                $("#progressbar").val(pValue);
+            }
+        };
+
+        request.open('POST', url);
+        request.send(data);
+    }
+
+    var timer;
+
+    function countdown(minutes,secs) {
+
+        var seconds = secs;
+        var mins = minutes
+
+        if (secs <= 0) {
+            seconds = 60;
+            mins--;
+        }
+
+        function tick() {
+            //This script expects an element with an ID = "counter". You can change that to what ever you want.
+            var counter = document.getElementById("counter");
+            var current_minutes = mins;
+            if (seconds >=0)
+            {
+                counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+            }
+            seconds--;
+            if( seconds >= -1 ) {
+                timer = setTimeout(tick, 1000);
+            } else {
+
+                if(mins > 0){
+
+                    countdown(mins-1,59);
+
+                }
+                else
+                {
+                    stop.onclick();
+                }
+            }
+        }
+        tick();
+    }
+</script>
+</div>
