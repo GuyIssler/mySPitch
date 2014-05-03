@@ -1,8 +1,8 @@
 development:
-  bucket: coverletter_dev
-  access_key_id: 1P0QJBY8AGJDV0DYZMR2
-  secret_access_key: e3z9jfC2Mr6gn3WqZ3zwGMpXt/vHTTf4zkWpQJ1M
+  bucket: mypitch
+  access_key_id: AKIAIZZ7XJODELEFLWJQ
+  secret_access_key: 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
 production:
-  bucket: coverletter_prod
-  access_key_id: 1P0QJBY8AGJDV0DYZMR2
-  secret_access_key: e3z9jfC2Mr6gn3WqZ3zwGMpXt/vHTTf4zkWpQJ1M
+  bucket: mypitch_prod
+  access_key_id: AKIAIZZ7XJODELEFLWJQ
+  secret_access_key: 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
