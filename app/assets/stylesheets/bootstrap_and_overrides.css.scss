@@ -4,8 +4,8 @@ $navbarInverseBackgroundHighlight: #505255;
 // $navbarInverseBorder: #242729;
 $navbarInverseText: #D5D5D5;
 $navbarInverseLinkColor: #D5D5D5;
-$navbarInverseLinkColorHover: #fff;
-$navbarInverseLinkColorActive: #fff;
+$navbarInverseLinkColorHover: #000;
+$navbarInverseLinkColorActive: #000;
 $navbarInverseLinkBackgroundActive: darken($navbarInverseBackground, 10%); 
 
 @import 'twitter/bootstrap-no-sprites';
