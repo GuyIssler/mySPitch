@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
-  before_filter :authenticate_employer!, :except => [:apply, :save, :confirm]
-  before_filter :set_job, :except => [:apply,:record, :save, :confirm]
+  before_filter :authenticate_employer!, :except => [:apply, :save, :confirm,:exist]
+  before_filter :set_job, :except => [:apply,:record, :save, :confirm,:exist]
   before_filter :check_for_valid_browser, :only => [:apply]
 
   def index
@@ -70,6 +70,13 @@ class EntriesController < ApplicationController
     @video_question_index = 0
     @entry.save
     render layout: "apply"
+  end
+
+  def exist
+    entries = Entry.where(:email => params[:email])
+    entry_ids = entries.map {|e| e.id}
+    entry_video_paths = entries.map {|e| e.video_file_name}
+    render :json => {:entry_ids => entry_ids, :entry_video_paths => entry_video_paths}
   end
 
   def confirm

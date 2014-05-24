@@ -12,6 +12,7 @@ en:
     proceed: "Proceed"
     record: "Rec"
     skip: "Skip"
+    exist: "Submit an Existing Video"
     stop: "Stop"
     submit: "Submit"
     submit_video: "Submit Video"

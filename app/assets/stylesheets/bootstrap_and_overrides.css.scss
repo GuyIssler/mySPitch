@@ -6,7 +6,7 @@ $navbarInverseText: #D5D5D5;
 $navbarInverseLinkColor: #D5D5D5;
 $navbarInverseLinkColorHover: #000;
 $navbarInverseLinkColorActive: #000;
-$navbarInverseLinkBackgroundActive: darken($navbarInverseBackground, 10%); 
+$navbarInverseLinkBackgroundActive: #80c3e5;//darken($navbarInverseBackground, 10%);
 
 @import 'twitter/bootstrap-no-sprites';
 @import "compass";

@@ -20,6 +20,7 @@
 
 <button class="btn btn-primary btn-large" id="proceed"><%= t('buttons.proceed') %></button>
 <button class="btn btn-primary btn-large hide" id="record"><%= t('buttons.record') %></button>
+<button class="btn btn-primary btn-large" id="exist"><%= t('buttons.exist') %></button>
 <button class="btn btn-primary btn-large" id="skip"><%= t('buttons.skip') %></button>
 <button id="stop" disabled class="btn btn-primary btn-large hide"><%= t('buttons.stop') %></button>
 <button class="btn btn-primary btn-large hide" id="submitRec"><%= t('buttons.submit_video') %></button>
@@ -52,6 +53,7 @@
 
     var proceed = document.getElementById('proceed');
     var record = document.getElementById('record');
+    var exist = document.getElementById('exist');
     var stop = document.getElementById('stop');
     var submitRec = document.getElementById('submitRec');
     var audio = document.querySelector('audio');
@@ -72,12 +74,13 @@
 
     function openCamera()
     {
-        $("#preview").css("visibility", "visible");
+        $("preview").style.display ="block";
         if (is_camera_open)
         {
 
             if (originalStream != null) {
                 preview.src = (window.webkitURL || window.URL).createObjectURL(originalStream);
+                previewAudio.src = "";
 
             }
             preview.load();
@@ -115,31 +118,67 @@
                     height: 240
                 }
             });
-        });
+        },function(stream) {});
         is_camera_open = true;
     }
 
     function cameraHide() {
-        $("#preview").css("visibility", "hidden");
+        $("preview").css("visibility", "hidden");
     }
 
     proceed.onclick = function () {
-        $("#record").show();
-        $("#rec_to_start").show();
+        $("record").style.display ="block";
+        $("rec_to_start").style.display ="block";
 
-        $("#proceed").hide();
-        $("#skip").hide();
-        $("#record_request").hide();
-        $("#proceed_btn_title").hide();
-        $("#note").hide();
-        $("#skip_btn_title").hide();
-        $("#submitRec").hide();
+        $("proceed").hide();
+        $("skip").hide();
+        $("record_request").hide();
+        $("proceed_btn_title").hide();
+        $("note").hide();
+        $("skip_btn_title").hide();
+        $("submitRec").hide();
 
         openCamera();
     }
 
+    exist.onclick = function () {
+        debugger;
+        new Ajax.Request('/entries/exist', {
+            method:'post',
+            parameters:{email: "<%= @entry.email%>"},
+            onComplete: function(res) {
+                var data = res.responseJSON;
+                if (data.errors) {
+                    console.log("error accured during save");
+                } else {
+                    debugger;
+                  alert('Guy');
+
+                }
+            }
+        });
+
+//        var http = new XMLHttpRequest();
+//        var url = "/entries/exist";
+//        var params = "email=<%= @entry.email %>";
+//        http.open("POST", url, true);
+//
+//        //Send the proper header information along with the request
+//        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//        http.setRequestHeader("Content-length", params.length);
+//        http.setRequestHeader("Connection", "close");
+//
+//        http.onreadystatechange = function() {//Call a function when the state changes.
+//            if(http.readyState == 4 && http.status == 200) {
+//                alert("Guy");
+//                alert(http.responseText);
+//            }
+//        }
+//        http.send(params);
+    }
+
     skip.onclick = function() {
-        window.location = "http://www.camdidate.net";
+        window.location = "http://www.myspitch.com";
     }
 
     record.onclick = function() {
@@ -156,33 +195,33 @@
             // return;
         }
         // hide the record button
-        $("#record").hide();
+        $("record").hide();
         record.disabled = true;
 
-        $("#skip").hide();
-        $("#submitRec").hide();
+        $("skip").hide();
+        $("submitRec").hide();
 
-        $("#stop").show();
+        $("stop").style.display ="block";
         stop.disabled = false;
 
-        $("#rec_to_start").hide();
+        $("rec_to_start").hide();
 
-        $("#counter").show();
-        countdown(1, 5);
+        $("counter").show();
+        countdown(1, 00);
     };
 
     stop.onclick = function() {
-        $("#stop").hide();
-        $("#note").hide();
-        $("#counter").hide();
+        $("stop").hide();
+        $("note").hide();
+        $("counter").hide();
 
         record.disabled = false;
 
-        $("#proceed").show();
+        $("proceed").style.display ="block";;
         proceed.disabled = false;
-        $("#proceed").html('Overwrite');
+        $("proceed").innerHTML = 'Overwrite';
 
-        $("#submitRec").show();
+        $("submitRec").style.display ="block";
         submitRec.disabled = false;
 
         //cameraHide();
@@ -228,15 +267,16 @@
 
     submitRec.onclick = function() {
         submitRec.disabled = true;
-        $("#submitRec").hide();
-        $("#general_request").hide();
-        $("#rec_to_start").hide();
-        $("#record").hide();
-        $("#proceed").hide();
+        $("submitRec").hide();
+        $("exist").hide();
+        //$("general_request").hide();
+        $("rec_to_start").hide();
+        $("record").hide();
+        $("proceed").hide();
 
         var fileName = Math.round(Math.random() * 99999999) + 99999999;
         //show a loader
-        $("#loader").show();
+        $("loader").style.display ="block";;
 
         console.log(recordAudio.toUrl);
         PostBlob(recordAudio.getBlob(), 'audio', fileName + '.wav');
@@ -254,11 +294,17 @@
             }
         };
 
+        request.upload.onload = function(e){
+        }
+
+        request.upload.onloadstart = function(e){
+        }
+
         request.upload.onprogress = function(e) {
             if (e.total > 0)
             {
-                var pValue = (e.loaded / e.total) * 100;
-                $("#progressbar").val(pValue);
+                var pValue = (e.loaded / e.total) * 97;
+                $("progressbar").value = pValue;
             }
         };
 

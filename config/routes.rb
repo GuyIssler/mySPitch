@@ -21,6 +21,7 @@ Coverletter::Application.routes.draw do
   match "/save/:entry_hash" => "entries#save", :as => :entry_video_save
 
   match "/entries/record" => "entries#record", :as => :job_apply_record
+  match "/entries/exist" => "entries#exist", :as => :entry_video_exist
 
   match "/upgrade_browser" => "pages#upgrade_browser", :as => :upgrade_browser
 
