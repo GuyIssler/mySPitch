@@ -62,7 +62,6 @@ group :development, :test do
 
 end
 
-gem 'heroku'
 gem "heroku_san", "~> 4.0.4"
 gem 'thin'
 
