@@ -51,16 +51,20 @@ gem 'rails_admin'
 
 group :development, :test do
   gem 'hirb'
-  gem 'thin'
+
   gem 'sqlite3'
   gem 'rspec-rails', ">= 2.0.0.beta" 
   gem 'httplog', "~> 0.1.0"
-  gem "heroku_san", "~> 4.0.4"
+
   gem 'pry'
   gem 'quiet_assets'
   gem 'sextant'
 
 end
+
+gem 'heroku'
+gem "heroku_san", "~> 4.0.4"
+gem 'thin'
 
 group :production do
   gem 'pg'
