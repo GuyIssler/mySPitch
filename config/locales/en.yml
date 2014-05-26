@@ -2,8 +2,8 @@ en:
   hello: "Hello, "
   homepage:
     title: "A video is worth a million words."
-    content1: "Camdidate helps you learn more about your potential candidates than just browsing resumes."
-    content2: "With Camdidate, you can ask your candidates specific questions and receieve video-based answers."
+    content1: "mySPitch helps you learn more about your potential candidates than just browsing resumes."
+    content2: "With mySPitch, you can ask your candidates specific questions and receieve video-based answers."
     get_started: "Get started now!"
   upgrade_browser:
     title:   "The browser you are using is not supported."
