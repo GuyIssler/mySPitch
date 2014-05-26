@@ -49,7 +49,7 @@ gem 'amazon-ecs'
 
 gem 'rails_admin'
 
-group :development, :test do
+group :development, :test, :production do
   gem 'hirb'
   gem 'thin'
   gem 'sqlite3'
