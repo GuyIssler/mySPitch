@@ -1,5 +1,5 @@
 class EntryMailer < ActionMailer::Base
-  default from: "notification@videocoverletter.com"
+  default from: "notification@myspitch.com"
 
   def invite_email(entry)
     @entry = entry

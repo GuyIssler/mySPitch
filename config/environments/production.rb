@@ -72,7 +72,7 @@ Coverletter::Application.configure do
     :address =>        'smtp.mandrillapp.com',
     :user_name =>      'guyissler@gmail.com',
     :password =>       '7fyvuVlG1DA4Ah9kPsdTbQ',
-    :domain =>         'www.myspitch.com',
+    :domain =>         'mypitch.herokuapp.com',
     :authentication => :plain
   }
   ActionMailer::Base.delivery_method = :smtp
