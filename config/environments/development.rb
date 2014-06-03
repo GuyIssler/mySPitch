@@ -41,7 +41,7 @@ Coverletter::Application.configure do
   LINKED_IN_APP_SECRET = "GHCNkp6NQKYWKZrB"
 
   REDIS_URL = "redis://localhost:6379"
-  ENV['REDISTOGO_URL'] = 'redis://@localhost:6379'
+  ENV['REDISTOGO_URL'] = 'redis://localhost:6379'
 
   CVL_ROOT = "http://localhost:3700"
 
