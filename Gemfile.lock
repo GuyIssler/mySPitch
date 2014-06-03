@@ -313,6 +313,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.2.14)
   rails_admin
+  redis
   rspec-rails (>= 2.0.0.beta)
   sass-rails (~> 3.2.3)
   sextant
