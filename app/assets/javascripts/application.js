@@ -21,7 +21,7 @@
 //= require_tree .
 
 
-$(document).ready(function() {
+document.observe('dom:loaded',function() {
   
   $('#start-rec').on('click', function (e) {
     recordVideo();
@@ -34,21 +34,25 @@ $(document).ready(function() {
   });
 });
 
-$('#myTab a').click(function (e) {
-  e.preventDefault();
-  $(this).tab('show');
-})
+for (var i=0;i<$$('#myTab a').length;i++) {
+  $$('#myTab a')[i].click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+}
 
 function remove_fields (link) {
-    $(link).prev("input[type=hidden]:first").val('1');
-    $(link).closest(".fields").hide();
+    $(link).previous("input[type=hidden]:first").value = '1';
+    $(link).up(".fields").hide();
 
 }
 
 function add_fields(link, association, content) {
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g")
-    $(link).parent().before(content.replace(regexp, new_id));
+    $(link).up().insert({
+        before : content.replace(regexp, new_id)
+    });
 
 }
 
