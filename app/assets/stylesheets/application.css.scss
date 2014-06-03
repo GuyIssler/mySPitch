@@ -49,3 +49,17 @@ body {
 #response_red {
   color: red;
 }
+
+th {border-bottom: 1px solid black;}
+
+td a {text-decoration: underline}
+td.buttons a {text-decoration: none}
+
+.question-holder {
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 10px
+}
+
+.responses-holder label {display: none}
+.responses-holder .control-group {margin:0}

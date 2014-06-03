@@ -1,3 +1,11 @@
 // Place all the styles related to the entries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.question-label {padding-top: 10px}
+
+.candidate-name {color:rgb(83, 120, 216)}
+.question-mandatory-info {
+  color:rgb(83, 120, 216);
+  font-style: italic;
+}
