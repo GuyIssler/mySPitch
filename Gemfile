@@ -17,6 +17,7 @@ end
 gem 'bootstrap-sass-rails'
 gem 'bootstrap-wysihtml5-rails'
 
+gem 'redis'
 gem 'unicorn'
 gem 'wicked'
 #user management

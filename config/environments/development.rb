@@ -41,15 +41,16 @@ Coverletter::Application.configure do
   LINKED_IN_APP_SECRET = "GHCNkp6NQKYWKZrB"
 
   REDIS_URL = "redis://localhost:6379"
+  ENV["REDISTOGO_URL"] = 'redis://localhost:6379'
 
   CVL_ROOT = "http://localhost:3700"
 
   ActionMailer::Base.smtp_settings = {
     :port =>           '587',
     :address =>        'smtp.mandrillapp.com',
-    :user_name =>      'ekedem@gmail.com',
-    :password =>       'wP9bY0YV5OJoXzn7CniQ3g',
-    :domain =>         'c66.me',
+    :user_name =>      'guyissler@gmail.com',
+    :password =>       '7fyvuVlG1DA4Ah9kPsdTbQ',
+    :domain =>         'mypitch.herokuapp.com',
     :authentication => :plain
   }
   ActionMailer::Base.delivery_method = :smtp
