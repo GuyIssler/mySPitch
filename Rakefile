@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Coverletter::Application.load_tasks
+Myspitch::Application.load_tasks

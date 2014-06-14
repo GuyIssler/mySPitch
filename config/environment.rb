@@ -2,4 +2,6 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-Coverletter::Application.initialize!
+Myspitch::Application.initialize!
+
+
