@@ -10,6 +10,9 @@ class Entry < ActiveRecord::Base
 
   attr_accessible :name, :email, :is_user_response
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
+
   # validations
   validates :name, :email, presence: :true
 
