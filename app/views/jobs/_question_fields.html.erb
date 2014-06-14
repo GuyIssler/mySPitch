@@ -4,9 +4,17 @@
     <%= link_to_remove_fields "Remove Question", f %><br />
     <%= f.text_area :content, :label => "Question Content", :rows => 3 %><br />
   </p>
-  <%= f.fields_for :responses,f.object.responses.optional_responses do |builder| %>
-      <%= render 'response_fields', :f => builder %>
-  <% end %>
-  <p><%= link_to_add_fields "Add Response", f, :responses %></p>
+
+  <div class="response-container">
+    <ol class="sortable">
+      <%= f.fields_for :responses,f.object.responses.optional_responses do |builder| %>
+          <%= render 'response_fields', :f => builder %>
+      <% end %>
+    </ol>
+    <p>
+      <%= link_to_add_fields "Add Response", f, :responses %>
+    </p>
+  </div>
+
 </div>
 

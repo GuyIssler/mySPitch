@@ -2,6 +2,8 @@
   <h3 id="job_title"><%= @job.title%></h3>
   <h5><%= @entry.name%></h5>
   <p id="job_desc"><%= @job.description%>.</p>
+
+  <div class="question-mandatory-info">Questions marked with * are mandatory</div>
   
   <%= form_for @job , url: {action: "record"} do |f| %>
 
