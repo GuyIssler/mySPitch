@@ -53,7 +53,7 @@ en:
         status: "Status"
         created: "Created"
       header: "Candidates For"
-      invite_new_candidate: "Invite another candidate"
+      invite_new_candidate: "Invite candidate"
     confirm:
       title: "Thank you for submitting your application."
     Apply:

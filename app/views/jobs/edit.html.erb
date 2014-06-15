@@ -22,5 +22,7 @@
   </div>   
 </div>
 <div class="clearfix"></div>
+
+<%= link_to t('entries.index.invite_new_candidate'), new_job_entry_path(@job), {class: "btn btn-info"} %></BR>
 <%= link_to t('jobs.edit.show_candidates'), job_entries_path(@job), {} %> </BR>
 <%= link_to t('jobs.edit.back_to_jobs'), jobs_path, {} %>
