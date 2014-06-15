@@ -8,8 +8,7 @@ class Job < ActiveRecord::Base
 
   attr_accessible :title, :description, :email_content, :questions_attributes, :video_questions_attributes
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
+  devise :timeoutable
 
   validates :title, :email_content, presence: :true
 

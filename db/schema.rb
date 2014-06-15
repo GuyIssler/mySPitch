@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209133048) do
+ActiveRecord::Schema.define(:version => 20131216173839) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -119,9 +119,12 @@ ActiveRecord::Schema.define(:version => 20131209133048) do
   create_table "questions", :force => true do |t|
     t.text     "content"
     t.boolean  "is_open_question"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "job_id"
+    t.integer  "question_type"
+    t.integer  "question_order"
+    t.boolean  "mandatory",        :default => false
   end
 
   create_table "responses", :force => true do |t|
@@ -131,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20131209133048) do
     t.datetime "updated_at",       :null => false
     t.integer  "question_id"
     t.boolean  "is_user_response"
+    t.integer  "response_order"
   end
 
   create_table "users", :force => true do |t|
