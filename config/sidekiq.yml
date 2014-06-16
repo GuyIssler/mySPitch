@@ -2,4 +2,20 @@
 # Options here can still be overridden by cmd line args.
 #   sidekiq -C config.yml
 ---
-:concurrency: 1
+:concurrency: 10
+:queues:
+  - [high, 7]
+  - [medium, 5]
+  - [default, 1]
+staging: 
+  :concurrency: 10
+  :queues:
+    - [high, 7]
+    - [medium, 5]
+    - [default, 1]
+production:
+  :concurrency: 10
+  :queues:
+    - [high, 7]
+    - [medium, 5]
+    - [default, 1]
