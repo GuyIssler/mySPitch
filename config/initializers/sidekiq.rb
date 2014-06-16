@@ -1,18 +1,7 @@
 require 'sidekiq'
 require 'sidekiq/web'
 
-ENV["REDIS_URL"] ||= "redis://localhost:6379"
-
 Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
   [user, password] == ["sidek1qadm1n", "frou354"]
 end
 
-Sidekiq.configure_server do |config|
-  config.redis = { url: ENV["REDIS_URL"], namespace: 'sidekiq' }
-end
-
-unless Rails.env.production?
-  Sidekiq.configure_client do |config|
-    config.redis = { url: ENV["REDIS_URL"], namespace: 'sidekiq'  }
-  end
-end
