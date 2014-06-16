@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
     @entry = @job.entries.new(params[:entry])
     if @entry.save
       @entry.invite
-      redirect_to job_entries_path(@job), notice: "Entry invitation sent successfully."
+      redirect_to job_entries_path(@job), notice: "Candidate invitation sent successfully."
     else
       render :new
     end
