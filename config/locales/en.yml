@@ -76,7 +76,7 @@ en:
          help:  "The system will send an notification to this email address with instructions."
       invite: "Invite"
     show:
-      back_to_all: "Back to all entries"
+      back_to_all: "Back to all candidates"
 
   activerecord:
     help:
