@@ -50,7 +50,7 @@ Myspitch::Application.configure do
     :address =>        'smtp.mandrillapp.com',
     :user_name =>      'guyissler@gmail.com',
     :password =>       '7fyvuVlG1DA4Ah9kPsdTbQ',
-    :domain =>         'mypitch.herokuapp.com',
+    :domain =>         'c66.me',
     :authentication => :plain
   }
   ActionMailer::Base.delivery_method = :smtp
