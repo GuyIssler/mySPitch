@@ -98,7 +98,7 @@ class EntriesController < ApplicationController
       @entry.process
       render text: "finished"
     else
-      render text: "ok"
+      render text: "Unable to process the recorded video"
     end
        
     
