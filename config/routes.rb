@@ -29,6 +29,8 @@ Myspitch::Application.routes.draw do
 
   match "/candidates/:id/survey" => "candidates#survey", :as => :candidate_survey
 
+  match "/candidates/:id/rate" => "candidates#rate", :as => :candidate_rate
+
   resources :users, only: [:edit, :update]
   resources :employers, only: [:edit, :update]
   root :to => 'pages#index'

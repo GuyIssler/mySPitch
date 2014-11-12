@@ -1,0 +1,10 @@
+<% Candidate.all.each_with_index do |candidate, index| %>
+
+Candidate <%= index+1 %> CV:
+</br></br>
+<%= candidate.cv %>
+</br></br>
+<a href="/candidates/<%= candidate.id %>/survey" > Get contact info</a>
+</br></br>
+
+<% end %>

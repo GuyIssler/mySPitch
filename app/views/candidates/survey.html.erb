@@ -1,0 +1,19 @@
+Candidate CV:
+</br>
+</br>
+<%= @candidate.cv %>
+</br>
+</br>
+<form id="rate_candidate"action="/candidates/<%= @candidate.id %>/rate" method="post">
+    Rate this candidate between 1-10:</br>
+    <input name="rating" form_id="rate_candidate" type="text"></br>
+    Candidate strengths according to your impression:</br>
+    <textarea form_id="rate_candidate" name="weaknesses" type="textarea"></textarea>  </br>
+    Candidate weaknesses according to your impression:</br>
+    <textarea form_id="rate_candidate" name="strengths" type="textarea"></textarea> </br>
+    Please give a feedback to the candidate:</br>
+    <textarea form_id="rate_candidate" name="feedback" type="textarea"></textarea>  </br>
+    </br></br>
+    <input type="submit" value="Rate Candidate">
+</form>
+
