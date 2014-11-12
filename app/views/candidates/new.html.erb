@@ -1,0 +1,17 @@
+<%= bootstrap_form_for(@candidate, help: :block) do |f| %>
+
+    <%= f.alert_message t('alerts.model_generic') %>
+
+
+    <%= f.text_field :first_name, class: "input-large" %>
+    <%= f.text_field :last_name,class: "input-large" %>
+
+    <%= f.text_field :email, class: "input-large" %>
+    <%= f.text_field :phone_number, class: "input-large" %>
+
+    <%= f.text_area :cv, label:"CV", class: "input-xxlarge" %>
+
+    <%= f.actions do %>
+        <%= f.primary t('buttons.submit'), disable_with: t('buttons.saving') %>
+    <% end %>
+<% end %>

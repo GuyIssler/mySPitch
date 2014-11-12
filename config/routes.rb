@@ -15,6 +15,8 @@ Myspitch::Application.routes.draw do
     resources :entries
   end
 
+  resources :candidates
+
   match "/j/:entry_hash" => "entries#apply", :as => :job_apply_direct
   match "/record/:entry_hash" => "entries#record", :as => :job_apply_record
   match "/confirm/:entry_hash" => "entries#confirm", :as => :job_apply_confirm
@@ -25,7 +27,9 @@ Myspitch::Application.routes.draw do
 
   match "/upgrade_browser" => "pages#upgrade_browser", :as => :upgrade_browser
 
+  match "/candidates/:id/survey" => "candidates#survey", :as => :candidate_survey
+
   resources :users, only: [:edit, :update]
   resources :employers, only: [:edit, :update]
-  root :to => 'pages#index' 
+  root :to => 'pages#index'
 end
