@@ -17,6 +17,8 @@ Myspitch::Application.routes.draw do
 
   resources :candidates
 
+  resources :candidate_feedbacks
+
   match "/j/:entry_hash" => "entries#apply", :as => :job_apply_direct
   match "/record/:entry_hash" => "entries#record", :as => :job_apply_record
   match "/confirm/:entry_hash" => "entries#confirm", :as => :job_apply_confirm
@@ -30,6 +32,8 @@ Myspitch::Application.routes.draw do
   match "/candidates/:id/survey" => "candidates#survey", :as => :candidate_survey
 
   match "/candidates/:id/rate" => "candidates#rate", :as => :candidate_rate
+
+  match "/candidates/:id/feedback" => "candidates#feedback", :as => :candidate_feedback
 
   resources :users, only: [:edit, :update]
   resources :employers, only: [:edit, :update]

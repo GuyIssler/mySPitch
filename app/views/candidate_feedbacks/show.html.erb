@@ -1,0 +1,20 @@
+<%= @candidate.first_name %> <%= @candidate.last_name %>
+</br></br>
+
+Number of Ratings: <%= @feedbacks.count %> </br>
+Average rating: <%= @avrg %>     </br></br>
+
+Strengths:</br>
+<% @feedbacks.each do |feedback| %>
+  <%= feedback.strengths %> </br>
+<%end%>
+
+Weaknesses: </br>
+<% @feedbacks.each do |feedback| %>
+    <%= feedback.weaknesses %> </br>
+<%end%>
+
+Feedback:  </br>
+<% @feedbacks.each do |feedback| %>
+    <%= feedback.feedback %> </br>
+<%end%>
